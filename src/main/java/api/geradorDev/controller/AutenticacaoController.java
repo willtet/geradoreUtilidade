@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AutenticacaoController {
-	@Autowired
-	private AuthenticationManager authManager;
+// 	@Autowired
+// 	private AuthenticationManager authManager;
 	
-	@PostMapping
-	public ResponseEntity<?> autenticar(@RequestBody String x){
-		return null;
-	}
+// 	@PostMapping
+// 	public ResponseEntity<?> autenticar(@RequestBody String x){
+// 		return null;
+// 	}
 
 }
