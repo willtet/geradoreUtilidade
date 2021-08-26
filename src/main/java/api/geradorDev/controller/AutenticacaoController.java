@@ -16,8 +16,8 @@ public class AutenticacaoController {
 	private AuthenticationManager authManager;
 	
 	@PostMapping
-	public ResponseEntity<?> autenticar(@RequestBody @Valid String x){
-		
+	public ResponseEntity<?> autenticar(@RequestBody String x){
+		return null;
 	}
 
 }
