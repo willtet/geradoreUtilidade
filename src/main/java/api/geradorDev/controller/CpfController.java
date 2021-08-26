@@ -2,7 +2,7 @@ package api.geradorDev.controller;
 
 import java.time.LocalDate;
 
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +20,9 @@ public class CpfController {
 	
 	@RequestMapping("/v1/cpf/gerar")
 	@ResponseBody
-	public String gerar() {
+	public ResponseEntity<String> gerar() {
 		CpfDto cpf = new CpfDto();
-		return cpf.getCpf();	 	
+		return ResponseEntity.ok(cpf.getCpf());	 	
 	}
 	
 	@RequestMapping("/v1/cpf/verificar/{cpf}")

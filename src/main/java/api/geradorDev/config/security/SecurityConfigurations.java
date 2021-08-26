@@ -20,7 +20,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/v1/cpf/*").permitAll()
-		.antMatchers("/v1/pessoa/*").authenticated()
+		.antMatchers("/v1/pessoa/*").permitAll()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		;

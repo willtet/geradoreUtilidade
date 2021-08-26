@@ -8,10 +8,12 @@ import java.util.Date;
 
 import api.geradorDev.gerador.GeradorCpf;
 import api.geradorDev.gerador.GeradorEndereco;
+import api.geradorDev.gerador.GeradorNomeESexo;
 import api.geradorDev.utils.DateFormatter;
 
 public class Pessoa {
 	private String nome;
+	private String sobrenome;
 	private String idade;
 	private String cpf;
 	private LocalDate nascimento;
@@ -30,12 +32,16 @@ public class Pessoa {
 	
 	
 	
-	public Pessoa(String nome, LocalDate nascimento, String sexo, String cep) {
-		this.nome = nome;
+	public Pessoa(LocalDate nascimento, String cep) {
+		String[] auxiliar = new GeradorNomeESexo().gerar().split(";"); 
+		this.nome = auxiliar[0];
+		this.sobrenome = auxiliar[1];
 		this.cpf = new GeradorCpf().gerarCpf();
 		this.nascimento = nascimento;
 		this.idade = idadeCalculator(nascimento);
-		this.sexo = sexo;
+		this.sexo = auxiliar[2];
+		this.estadoCivil = "solteiro";
+		this.nomeMae = new GeradorNomeESexo().gerarMãe(auxiliar[1]);
 		this.email = this.cpf.replaceAll("[^0-9]","")+"@emailteste.com";
 		this.senha = "100100";
 		try {
@@ -53,59 +59,60 @@ public class Pessoa {
 		return String.valueOf(idadeReal);
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
 
-
-
+	public String getSobrenome() {
+		return sobrenome;
+	}
 
 	public String getIdade() {
 		return idade;
 	}
 
-
-
-
 	public String getCpf() {
 		return cpf;
 	}
-
-
-
 
 	public LocalDate getNascimento() {
 		return nascimento;
 	}
 
-
-
-
 	public String getSexo() {
 		return sexo;
 	}
 
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
 
-
+	public String getNomeMae() {
+		return nomeMae;
+	}
 
 	public String getEmail() {
 		return email;
 	}
 
-
-
-
 	public String getSenha() {
 		return senha;
 	}
 
+	public String getDdd() {
+		return ddd;
+	}
 
-
+	public String getTelefone() {
+		return telefone;
+	}
 
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
+
+
 	
 	
 	
