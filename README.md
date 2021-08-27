@@ -18,7 +18,7 @@ Response body:
         563.762.211-65
     }
 
-### GET /magazines/[id]
+### GET /{version}/cpf/verificar/${CPF}
 
 Example: https://gerador-utilidade.herokuapp.com/v1/cpf/verificar/56376221165
 
@@ -30,7 +30,7 @@ Response body:
 
 
 
-### POST /magazines/[id]/articles
+### GET /{version}/pessoa/gerar
 
 Example: https://gerador-utilidade.herokuapp.com/v1/pessoa/gerar
 
