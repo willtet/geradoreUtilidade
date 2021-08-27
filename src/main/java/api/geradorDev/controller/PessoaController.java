@@ -14,7 +14,7 @@ public class PessoaController {
 	@GetMapping("/v1/pessoa/gerar")
 	@ResponseBody
 	public ResponseEntity<Pessoa> gerarPessoa() {
-		Pessoa pessoa = new Pessoa(LocalDate.parse("1996-04-04"),"01106090"); 
+		Pessoa pessoa = new Pessoa("01106090"); 
 		return ResponseEntity.ok(pessoa);
 	}
 	

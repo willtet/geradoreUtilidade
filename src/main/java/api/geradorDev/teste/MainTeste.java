@@ -24,6 +24,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import com.monitorjbl.xlsx.StreamingReader;
 
 import api.geradorDev.gerador.GeradorEndereco;
+import api.geradorDev.gerador.GeradorSenha;
 
 public class MainTeste {
 	public static void main(String[] args) throws MalformedURLException, IOException {
@@ -38,7 +39,7 @@ public class MainTeste {
 //		
 //		System.out.println(new GeradorEndereco().gerar("05319040").toString());
 //		
-
+//
 //		Map<String, List<String>> listaFormatada = new HashMap<String, List<String>>();
 //		
 //		InputStream is = new FileInputStream(new File(System.getProperty("user.dir")+"/datas/nomes.xlsx"));
@@ -59,5 +60,5 @@ public class MainTeste {
 //			System.out.println(string);
 //		}
 		
-		System.out.println(new GeradorEndereco().gerar("05319040"));
+		System.out.println(new GeradorSenha().gerarSomenteEspeciais(10));
 }}

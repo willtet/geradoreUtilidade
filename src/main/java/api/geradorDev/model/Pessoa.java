@@ -7,7 +7,9 @@ import java.time.ZoneId;
 import java.util.Date;
 
 import api.geradorDev.gerador.GeradorCpf;
+import api.geradorDev.gerador.GeradorDDDTelefone;
 import api.geradorDev.gerador.GeradorEndereco;
+import api.geradorDev.gerador.GeradorNascimento;
 import api.geradorDev.gerador.GeradorNomeESexo;
 import api.geradorDev.utils.DateFormatter;
 
@@ -32,8 +34,10 @@ public class Pessoa {
 	
 	
 	
-	public Pessoa(LocalDate nascimento, String cep) {
+	public Pessoa(String cep) {
 		String[] auxiliar = new GeradorNomeESexo().gerar().split(";"); 
+		LocalDate nascimento = LocalDate.parse(new GeradorNascimento().gerar());
+		
 		this.nome = auxiliar[0];
 		this.sobrenome = auxiliar[1];
 		this.cpf = new GeradorCpf().gerarCpf();
@@ -44,6 +48,8 @@ public class Pessoa {
 		this.nomeMae = new GeradorNomeESexo().gerarMãe(auxiliar[1]);
 		this.email = this.cpf.replaceAll("[^0-9]","")+"@emailteste.com";
 		this.senha = "100100";
+		this.ddd = new GeradorDDDTelefone().gerarDDD();
+		this.telefone = new GeradorDDDTelefone().gerarTelefone();
 		try {
 			this.endereco = new GeradorEndereco().gerar(cep);
 		} catch (IOException e) {

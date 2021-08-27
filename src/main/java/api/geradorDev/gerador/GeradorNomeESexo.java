@@ -30,8 +30,8 @@ public class GeradorNomeESexo {
 			List<String> nomes = listaDeNomes.get(sexoDefinido);
 			List<String> sobrenomes = listaDeNomes.get("sobrenome");
 			
-			String nome = nomes.get(new Random().nextInt(nomes.size())+1);
-			String sobrenome = sobrenomes.get(new Random().nextInt(sobrenomes.size())+1);
+			String nome = nomes.get(new Random().nextInt(nomes.size()));
+			String sobrenome = sobrenomes.get(new Random().nextInt(sobrenomes.size()));
 			
 			return nome+";"+sobrenome+";"+sexoDefinido;
 			
@@ -53,10 +53,10 @@ public class GeradorNomeESexo {
 			List<String> nomes = listaDeNomes.get("feminino");
 			List<String> sobrenomes = listaDeNomes.get("sobrenome");
 			
-			String nome = nomes.get(new Random().nextInt(nomes.size())+1);
-			String sobrenome = sobrenomes.get(new Random().nextInt(sobrenomes.size())+1);
+			String nome = nomes.get(new Random().nextInt(nomes.size()));
+			String sobrenome = sobrenomes.get(new Random().nextInt(sobrenomes.size()));
 			while (sobrenome.equals(sobrenomePai)) {
-				sobrenome = sobrenomes.get(new Random().nextInt(sobrenomes.size())+1);
+				sobrenome = sobrenomes.get(new Random().nextInt(sobrenomes.size()));
 				
 			}
 			
@@ -75,7 +75,7 @@ public class GeradorNomeESexo {
 			
 			List<String> nomes = listaDeNomes.get("masculino");
 			
-			String nome = nomes.get(new Random().nextInt(nomes.size())+1);
+			String nome = nomes.get(new Random().nextInt(nomes.size()));
 			
 			return nome+" "+SobrenomePai;
 			

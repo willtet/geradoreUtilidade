@@ -17,10 +17,9 @@ import api.geradorDev.model.Endereco;
 
 
 public class GeradorEndereco {
-	public Endereco gerar(String cep) throws MalformedURLException, IOException {
+	public Endereco gerar(String cep) throws IOException {
 		JSONObject enderecoColetado;
 		enderecoColetado = readJsonFromCEP(cep);
-		System.out.println(enderecoColetado);
 		Endereco novoEndereco = new Endereco(
 				cep,
 				enderecoColetado.get("logradouro").toString(),
@@ -42,12 +41,11 @@ public class GeradorEndereco {
 	    return sb.toString();
 	  }
 	
-	private JSONObject readJsonFromCEP (String cep) throws MalformedURLException, IOException{
+	private JSONObject readJsonFromCEP (String cep) throws IOException {
 		URL url;
 		int statusCode;
 		do {
 			Random r = new Random();
-			System.out.println("https://viacep.com.br/ws/"+String.format("%08d", r.nextInt(99999999))+"/json/");
 			url = new URL("https://viacep.com.br/ws/"+cep+"/json/");
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
 			statusCode = http.getResponseCode();
