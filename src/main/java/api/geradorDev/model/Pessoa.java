@@ -34,7 +34,7 @@ public class Pessoa {
 	
 	
 	
-	public Pessoa(String cep) {
+	public Pessoa() {
 		String[] auxiliar = new GeradorNomeESexo().gerar().split(";"); 
 		LocalDate nascimento = LocalDate.parse(new GeradorNascimento().gerar());
 		
@@ -50,12 +50,7 @@ public class Pessoa {
 		this.senha = "100100";
 		this.ddd = new GeradorDDDTelefone().gerarDDD();
 		this.telefone = new GeradorDDDTelefone().gerarTelefone();
-		try {
-			this.endereco = new GeradorEndereco().gerar(cep);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.endereco = new GeradorEndereco().gerar();
 	}
 
 	private String idadeCalculator(LocalDate nascimentos) {

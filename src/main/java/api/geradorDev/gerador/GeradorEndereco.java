@@ -1,6 +1,9 @@
 package api.geradorDev.gerador;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,17 +12,37 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.json.JSONObject;
+
+import com.monitorjbl.xlsx.StreamingReader;
 
 import api.geradorDev.model.Endereco;
 
 
 public class GeradorEndereco {
-	public Endereco gerar(String cep) throws IOException {
-		JSONObject enderecoColetado;
-		enderecoColetado = readJsonFromCEP(cep);
+	public Endereco gerar() {
+		List<String> listaCEP = new ArrayList<String>();
+		try {
+			listaCEP = lerTabelaExcel();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONObject enderecoColetado = new JSONObject();
+		String cep = listaCEP.get(new Random().nextInt(listaCEP.size()));
+		try {
+			enderecoColetado = readJsonFromCEP(cep);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Endereco novoEndereco = new Endereco(
 				cep,
 				enderecoColetado.get("logradouro").toString(),
@@ -59,6 +82,25 @@ public class GeradorEndereco {
 		    } finally {
 		      is.close();
 		    }
+	}
+	
+private List<String> lerTabelaExcel() throws FileNotFoundException {
+		
+		InputStream is = new FileInputStream(new File(System.getProperty("user.dir")+"/datas/cep.xlsx"));
+		Workbook worbook = StreamingReader.builder()
+				.rowCacheSize(100)
+				.bufferSize(100)
+				.open(is);
+		
+		Sheet sheet = worbook.getSheet("Planilha1");
+		
+		List<String> listaDDD = new ArrayList<String>();
+		
+		for (Row row : sheet) {
+			listaDDD.add(row.getCell(0).getStringCellValue());
+		}
+		
+		return listaDDD;
 	}
 	
 	

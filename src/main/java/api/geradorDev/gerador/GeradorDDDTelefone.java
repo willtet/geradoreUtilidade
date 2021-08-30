@@ -31,7 +31,6 @@ public class GeradorDDDTelefone {
 			e.printStackTrace();
 		}
 		return null;
-		
 	}
 	
 	private String randomTelefone() {
